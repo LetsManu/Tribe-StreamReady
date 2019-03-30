@@ -65,6 +65,10 @@ namespace Tribe_StreamReady
                 Directory.CreateDirectory(@"C:\Users\" + Environment.UserName + @"\Documents\TribeXR");
             }
 
+            if (!Directory.Exists(@"C:\temp"))
+            {
+                Directory.CreateDirectory(@"C:\temp");
+            }
 
             Set_Env();
 
@@ -136,7 +140,6 @@ namespace Tribe_StreamReady
 
 
         static string directory = string.Format(@"C:\Users\"+ Environment.UserName +@"\Documents\TribeXR\");
-        private string downloadname;
 
         private void Install_YTDL()
         {
@@ -152,7 +155,7 @@ namespace Tribe_StreamReady
                 }
 
 
-                downloadname = "youtube-dl";
+                
                 
                 WebClient wc_yt = new WebClient();
                 wc_yt.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
@@ -252,7 +255,7 @@ namespace Tribe_StreamReady
             }
             else
             {
-                if (downloadname == "ffmpeg") MessageBox.Show("Unable to download zip file, please check your connection", "Download failed!");
+                MessageBox.Show("Unable to download zip file, please check your connection", "Download failed!");
             }
 
            
