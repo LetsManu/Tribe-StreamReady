@@ -48,7 +48,7 @@ namespace Tribe_StreamReady.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ffmpeg-4.1.1-win32-static.zip")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ffmpeg-4.1.1-win32-static")]
         public string ffmpeg_string {
             get {
                 return ((string)(this["ffmpeg_string"]));

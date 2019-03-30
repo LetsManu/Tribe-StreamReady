@@ -9,7 +9,7 @@
       <Value Profile="(Default)">https://youtube-dl.org/downloads/latest/youtube-dl.exe</Value>
     </Setting>
     <Setting Name="ffmpeg_string" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ffmpeg-4.1.1-win32-static.zip</Value>
+      <Value Profile="(Default)">ffmpeg-4.1.1-win32-static</Value>
     </Setting>
   </Settings>
 </SettingsFile>

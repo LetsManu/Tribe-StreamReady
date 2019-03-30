@@ -58,7 +58,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>TribeXR_Stream_ready_key.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>tribexr_key.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -128,6 +128,7 @@
     </Compile>
     <None Include="TribeXR-KeyForUsage.pfx" />
     <None Include="TribeXR-Test.snk" />
+    <None Include="tribexr_key.pfx" />
     <None Include="TribeXR_Stream_ready_key.pfx" />
   </ItemGroup>
   <ItemGroup>

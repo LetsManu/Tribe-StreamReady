@@ -148,7 +148,7 @@ namespace Tribe_StreamReady
 
             try
             {
-                if (!File.Exists(directory + "youtube-dl"))
+                if (!File.Exists(directory + "youtube-dl.exe"))
                 {
                     WebClient wc_yt = new WebClient();
                     wc_yt.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
@@ -160,6 +160,10 @@ namespace Tribe_StreamReady
                     wc_yt.DownloadFileAsync(uri, directory + "youtube-dl.exe");
                     wc_yt.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_yt_DownloadProgressChanged);
                     wc_yt.DownloadFileCompleted += new AsyncCompletedEventHandler(wc_yt_DownloadFileCompleted);
+                }
+                else
+                {
+                    is_installed_youtube_dl = true;
                 }
 
 
@@ -175,6 +179,11 @@ namespace Tribe_StreamReady
             progressBar1.Visible = false;
             progressBar2.Visible = false;
 
+            Show_Box_End();
+        }
+
+        private void Show_Box_End()
+        {
             MessageBox.Show("Success you can now drop your beat into Streaming! Cheers!", "Installation Complete",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -244,7 +253,10 @@ namespace Tribe_StreamReady
                 Directory.Delete(@"C:\temp\" + Properties.Settings.Default.ffmpeg_string, true);
                 File.Delete(@"C:\temp\ffmpeg.zip");
 
-
+                if (is_installed_youtube_dl)
+                {
+                    Show_Box_End();
+                }
 
             }
             else
@@ -272,6 +284,7 @@ namespace Tribe_StreamReady
 
         private bool mouseDown;
         private Point lastLocation;
+        private bool is_installed_youtube_dl;
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
