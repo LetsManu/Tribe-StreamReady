@@ -104,13 +104,12 @@ namespace Tribe_StreamReady
 
             if (!env_tribe_exist)
             {
+                string env = sb.ToString();
+
+                Environment.SetEnvironmentVariable("Path", env, EnvironmentVariableTarget.Machine);
+
                 sb.AppendFormat(@" C:\Users\" + Environment.UserName + @"\Documents\TribeXR");
             }
-
-
-            string env = sb.ToString();
-
-            Environment.SetEnvironmentVariable("Path", env, EnvironmentVariableTarget.Machine);
             
         }
 
@@ -118,7 +117,7 @@ namespace Tribe_StreamReady
         {
 
 
-            Uri uri = new Uri(Properties.Settings.Default.ffmpeg);
+            Uri uri = new Uri(Properties.Settings.Default.ffmpeg_url);
 
             if (File.Exists(@"C:\temp\" + "ffmpeg.zip"))
             {
@@ -143,30 +142,25 @@ namespace Tribe_StreamReady
 
         private void Install_YTDL()
         {
-            Uri uri = new Uri(Properties.Settings.Default.youtubedl);
+            Uri uri = new Uri(Properties.Settings.Default.youtubedl_url);
 
 
 
             try
             {
-                if (File.Exists(directory + "youtube-dl"))
+                if (!File.Exists(directory + "youtube-dl"))
                 {
-                    File.Delete(directory + "youtube-dl");
+                    WebClient wc_yt = new WebClient();
+                    wc_yt.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
+                    wc_yt.Headers.Add("Content-Type", "application / exe, application / octet - stream");
+                    wc_yt.Headers.Add("Accept-Encoding", "exe");
+                    wc_yt.Headers.Add("Referer", "http://google.at");
+                    wc_yt.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    wc_yt.DownloadFileAsync(uri, directory + "youtube-dl.exe");
+                    wc_yt.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_yt_DownloadProgressChanged);
+                    wc_yt.DownloadFileCompleted += new AsyncCompletedEventHandler(wc_yt_DownloadFileCompleted);
                 }
-
-
-                
-                
-                WebClient wc_yt = new WebClient();
-                wc_yt.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
-                wc_yt.Headers.Add("Content-Type", "application / exe, application / octet - stream");
-                wc_yt.Headers.Add("Accept-Encoding", "exe");
-                wc_yt.Headers.Add("Referer", "http://google.at");
-                wc_yt.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                wc_yt.DownloadFileAsync(uri, directory + "youtube-dl.exe");
-                wc_yt.DownloadProgressChanged += new DownloadProgressChangedEventHandler(wc_yt_DownloadProgressChanged);
-                wc_yt.DownloadFileCompleted += new AsyncCompletedEventHandler(wc_yt_DownloadFileCompleted);
 
 
             }
@@ -241,13 +235,13 @@ namespace Tribe_StreamReady
                 if (File.Exists(@"C:\Users\" + Environment.UserName + @"\Documents\TribeXR\ffprobe.exe")) File.Delete(@"C:\Users\" + Environment.UserName + @"\Documents\TribeXR\ffprobe.exe");
 
 
-                File.Move(@"C:\temp\ffmpeg-4.1.1-win32-static\bin\ffmpeg.exe", @"C:\Users\" + Environment.UserName + @"\Documents\TribeXR\ffmpeg.exe");
+                File.Move(@"C:\temp\"+ Properties.Settings.Default.ffmpeg_string +@"\bin\ffmpeg.exe", @"C:\Users\" + Environment.UserName + @"\Documents\TribeXR\ffmpeg.exe");
 
-                File.Move(@"C:\temp\ffmpeg-4.1.1-win32-static\bin\ffplay.exe", @"C:\Users\" + Environment.UserName + @"\Documents\TribeXR\ffplay.exe");
+                File.Move(@"C:\temp\" + Properties.Settings.Default.ffmpeg_string + @"\bin\ffplay.exe", @"C:\Users\" + Environment.UserName + @"\Documents\TribeXR\ffplay.exe");
 
-                File.Move(@"C:\temp\ffmpeg-4.1.1-win32-static\bin\ffprobe.exe", @"C:\Users\" + Environment.UserName + @"\Documents\TribeXR\ffprobe.exe");
+                File.Move(@"C:\temp\" + Properties.Settings.Default.ffmpeg_string + @"\bin\ffprobe.exe", @"C:\Users\" + Environment.UserName + @"\Documents\TribeXR\ffprobe.exe");
 
-                Directory.Delete(@"C:\temp\ffmpeg-4.1.1-win32-static\", true);
+                Directory.Delete(@"C:\temp\" + Properties.Settings.Default.ffmpeg_string, true);
                 File.Delete(@"C:\temp\ffmpeg.zip");
 
 

@@ -27,9 +27,9 @@ namespace Tribe_StreamReady.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-4.1.1-win32-static.zip")]
-        public string ffmpeg {
+        public string ffmpeg_url {
             get {
-                return ((string)(this["ffmpeg"]));
+                return ((string)(this["ffmpeg_url"]));
             }
         }
         
@@ -37,12 +37,24 @@ namespace Tribe_StreamReady.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("https://youtube-dl.org/downloads/latest/youtube-dl.exe")]
-        public string youtubedl {
+        public string youtubedl_url {
             get {
-                return ((string)(this["youtubedl"]));
+                return ((string)(this["youtubedl_url"]));
             }
             set {
-                this["youtubedl"] = value;
+                this["youtubedl_url"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ffmpeg-4.1.1-win32-static.zip")]
+        public string ffmpeg_string {
+            get {
+                return ((string)(this["ffmpeg_string"]));
+            }
+            set {
+                this["ffmpeg_string"] = value;
             }
         }
     }
