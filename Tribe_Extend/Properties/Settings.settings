@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Tribe_StreamReady.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ffmpeg" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-4.1.1-win32-static.zip</Value>
+    </Setting>
+    <Setting Name="youtubedl" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">https://youtube-dl.org/downloads/latest/youtube-dl.exe</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
